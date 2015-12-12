@@ -17,17 +17,6 @@ class profiles::controller {
     gpgkey   => 'file:///etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG-94',
     require  => File['/etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG-94'],
   }
-#  class { '::postgresql::globals':
-#    encoding => 'UTF8',
-#    locale   => 'en_AU.UTF-8',
-#    needs_initdb => true,
-#    version  => '9.4',
-#  }
-#  class { '::postgresql::server':
-#    ip_mask_allow_all_users    => '0.0.0.0/0',
-#    listen_addresses           => '*',
-#    require                    => Yumrepo['pgdg94'],
-#  }
   class { '::mysql::server':
     override_options => {
       'mysqld'                 => {
@@ -84,11 +73,11 @@ class profiles::controller {
     allowed_hosts => '%',
   }
 
-  class { 'apache':
-    servername => 'controller',
-  }
+  #class { 'apache':
+    #servername => 'controller',
+    #}
 
-  class { 'apache::mod::wsgi': }
+  #class { 'apache::mod::wsgi': }
 
   #  apache::vhost { 'keystone_5000':
   #    docroot             => false,
@@ -145,4 +134,4 @@ class profiles::controller {
   #        </IfVersion>
   #    </Directory>',
   #  }
-  #}
+}
