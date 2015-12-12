@@ -90,59 +90,59 @@ class profiles::controller {
 
   class { 'apache::mod::wsgi': }
 
-  apache::vhost { 'keystone_5000':
-    docroot             => false,
-    manage_docroot      => false,
-    port                => '5000',
-    wsgi_daemon_process => 'keystone-public',
-    wsgi_daemon_process_options => {
-      processes    => '5',
-      threads      => '1',
-      user         => 'keystone',
-      group        => 'keystone',
-      display-name => '%{GROUP}',
-    },
-    wsgi_process_group      => 'keystone-public',
-    wsgi_script_aliases     => {'/' => '/usr/bin/keystone-wsgi-public'},
-    wsgi_pass_authorization => 'On',
-    custom_fragment         => '
-    WSGIApplicationGroup %{GLOBAL}
-    <Directory /usr/bin>
-        <IfVersion >= 2.4>
-            Require all granted
-        </IfVersion>
-        <IfVersion < 2.4>
-            Order allow,deny
-            Allow from all
-        </IfVersion>
-    </Directory>',
-  }
+  #  apache::vhost { 'keystone_5000':
+  #    docroot             => false,
+  #    manage_docroot      => false,
+  #    port                => '5000',
+  #    wsgi_daemon_process => 'keystone-public',
+  #    wsgi_daemon_process_options => {
+  #      processes    => '5',
+  #      threads      => '1',
+  #      user         => 'keystone',
+  #      group        => 'keystone',
+  #      display-name => '%{GROUP}',
+  #    },
+  #    wsgi_process_group      => 'keystone-public',
+  #    wsgi_script_aliases     => {'/' => '/usr/bin/keystone-wsgi-public'},
+  #    wsgi_pass_authorization => 'On',
+  #    custom_fragment         => '
+  #    WSGIApplicationGroup %{GLOBAL}
+  #    <Directory /usr/bin>
+  #        <IfVersion >= 2.4>
+  #            Require all granted
+  #        </IfVersion>
+  #        <IfVersion < 2.4>
+  #            Order allow,deny
+  #            Allow from all
+  #        </IfVersion>
+  #    </Directory>',
+  #  }
 
-  apache::vhost { 'keystone_35357':
-    docroot             => false,
-    manage_docroot      => false,
-    port                => '35357',
-    wsgi_daemon_process => 'keystone-admin',
-    wsgi_daemon_process_options => {
-      processes    => '5',
-      threads      => '1',
-      user         => 'keystone',
-      group        => 'keystone',
-      display-name => '%{GROUP}',
-    },
-    wsgi_process_group      => 'keystone-admin',
-    wsgi_script_aliases     => {'/' => '/usr/bin/keystone-wsgi-admin'},
-    wsgi_pass_authorization => 'On',
-    custom_fragment         => '
-    WSGIApplicationGroup %{GLOBAL}
-    <Directory /usr/bin>
-        <IfVersion >= 2.4>
-            Require all granted
-        </IfVersion>
-        <IfVersion < 2.4>
-            Order allow,deny
-            Allow from all
-        </IfVersion>
-    </Directory>',
-  }
-}
+  #  apache::vhost { 'keystone_35357':
+  #    docroot             => false,
+  #    manage_docroot      => false,
+  #    port                => '35357',
+  #    wsgi_daemon_process => 'keystone-admin',
+  #    wsgi_daemon_process_options => {
+  #      processes    => '5',
+  #      threads      => '1',
+  #      user         => 'keystone',
+  #      group        => 'keystone',
+  #      display-name => '%{GROUP}',
+  #    },
+  #    wsgi_process_group      => 'keystone-admin',
+  #    wsgi_script_aliases     => {'/' => '/usr/bin/keystone-wsgi-admin'},
+  #    wsgi_pass_authorization => 'On',
+  #    custom_fragment         => '
+  #    WSGIApplicationGroup %{GLOBAL}
+  #    <Directory /usr/bin>
+  #        <IfVersion >= 2.4>
+  #            Require all granted
+  #        </IfVersion>
+  #        <IfVersion < 2.4>
+  #            Order allow,deny
+  #            Allow from all
+  #        </IfVersion>
+  #    </Directory>',
+  #  }
+  #}
