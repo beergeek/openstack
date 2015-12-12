@@ -91,6 +91,8 @@ class profiles::controller {
   class { 'apache::mod::wsgi': }
 
   apache::vhost { 'keystone_5000':
+    docroot             => false,
+    manage_docroot      => false,
     port                => '5000',
     wsgi_daemon_process => 'keystone-public',
     wsgi_daemon_process_options => {
@@ -117,6 +119,8 @@ class profiles::controller {
   }
 
   apache::vhost { 'keystone_35357':
+    docroot             => false,
+    manage_docroot      => false,
     port                => '35357',
     wsgi_daemon_process => 'keystone-admin',
     wsgi_daemon_process_options => {
@@ -127,7 +131,7 @@ class profiles::controller {
       display-name => '%{GROUP}',
     },
     wsgi_process_group      => 'keystone-admin',
-    wsgi_script_aliases     => {'/' => '/usr/bin/keystone-wsgi-public'},
+    wsgi_script_aliases     => {'/' => '/usr/bin/keystone-wsgi-admin'},
     wsgi_pass_authorization => 'On',
     custom_fragment         => '
     WSGIApplicationGroup %{GLOBAL}
