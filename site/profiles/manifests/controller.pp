@@ -145,8 +145,8 @@ class profiles::controller {
     # Endpoint
     keystone_endpoint { 'RegionOne/keystone::identity':
       ensure       => present,
-      public_url   => 'http://controller:8774/v2.0',
+      public_url   => 'http://controller:5000/v2.0',
       admin_url    => 'http://controller:35357/v2.0',
-      internal_url => 'http://controller:8774/v2.0',
+      internal_url => 'http://controller:5000/v2.0',
     }
 }
