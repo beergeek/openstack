@@ -1,6 +1,9 @@
 class profiles::controller {
 
   require profiles::base
+  package { ['memcached','python-memcached']:
+    ensure => present,
+  }
   file { '/etc/pki/rpm-gpg/RPM-GPG-KEY-PGDG-94':
     ensure => file,
     owner  => 'root',
