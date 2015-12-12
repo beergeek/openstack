@@ -136,17 +136,20 @@ class profiles::controller {
   #      </Directory>',
   #    }
 
-  #  # Service
-  #  keystone_service { 'keystone':
-  #    ensure      => present,
-  #    type        => 'identity',
-  #    description => 'OpenStack Identity',
-  #  }
-  #
-  #  # Endpoint
-  #  keystone_endpoint { 'RegionOne/keystone':
-  #    ensure     => present,
-  #    type       => 'identity',
-  #    public_url => 'http://controller:8774/v2.0',
-  #    admin_url  => 
+    # Service
+    keystone_service { 'keystone':
+      ensure      => present,
+      type        => 'identity',
+      description => 'OpenStack Identity',
+    }
+
+    # Endpoint
+    keystone_endpoint { 'RegionOne/keystone':
+      ensure       => present,
+      region       => 'RegionOne',
+      type         => 'identity',
+      public_url   => 'http://controller:8774/v2.0',
+      admin_url    => 'http://controller:8774/v2.0',
+      internal_url => 'http://controller:8774/v2.0',
+    }
 }
